@@ -25,7 +25,8 @@ class JpaDocentRepository implements DocentRepository {
     }
 
     @Override
-    public void delete(long id) { findById(id)
+    public void delete(long id) {
+        findById(id)
             .ifPresent(docent -> manager.remove(docent));
     }
 }
