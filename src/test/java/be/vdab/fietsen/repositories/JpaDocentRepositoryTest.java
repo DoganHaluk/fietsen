@@ -75,4 +75,9 @@ class JpaDocentRepositoryTest extends AbstractTransactionalJUnit4SpringContextTe
         manager.flush();
         assertThat(countRowsInTableWhere(DOCENTEN, "id = " + id)).isZero();
     }
+
+    @Test
+    void findAll() {
+        assertThat(repository.findAll()).hasSize(countRowsInTable(DOCENTEN)).extracting(Docent::getWedde).isSorted();
+    }
 }

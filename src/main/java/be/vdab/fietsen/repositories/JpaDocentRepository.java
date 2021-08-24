@@ -4,6 +4,7 @@ import be.vdab.fietsen.domain.Docent;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -27,6 +28,11 @@ class JpaDocentRepository implements DocentRepository {
     @Override
     public void delete(long id) {
         findById(id)
-            .ifPresent(docent -> manager.remove(docent));
+                .ifPresent(docent -> manager.remove(docent));
+    }
+
+    @Override
+    public List<Docent> findAll() {
+        return manager.createQuery("select d from Docent d order by d.wedde", Docent.class).getResultList();
     }
 }
