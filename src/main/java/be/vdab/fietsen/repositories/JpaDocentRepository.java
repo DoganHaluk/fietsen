@@ -4,6 +4,7 @@ import be.vdab.fietsen.domain.Docent;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,5 +35,15 @@ class JpaDocentRepository implements DocentRepository {
     @Override
     public List<Docent> findAll() {
         return manager.createQuery("select d from Docent d order by d.wedde", Docent.class).getResultList();
+    }
+
+    @Override
+    public List<Docent> findByWeddeBetween(BigDecimal van, BigDecimal tot) {
+        return manager.createQuery("select d from Docent d where d.wedde between :van and :tot", Docent.class).setParameter("van", van).setParameter("tot", tot).getResultList();
+    }
+
+    @Override
+    public List<String> findEmailAdressen() {
+        return manager.createQuery("select d.emailAdres from Docent d", String.class).getResultList();
     }
 }

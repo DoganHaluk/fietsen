@@ -80,4 +80,18 @@ class JpaDocentRepositoryTest extends AbstractTransactionalJUnit4SpringContextTe
     void findAll() {
         assertThat(repository.findAll()).hasSize(countRowsInTable(DOCENTEN)).extracting(Docent::getWedde).isSorted();
     }
+
+    @Test
+    void findByWeddeBetween() {
+        var duizend = BigDecimal.valueOf(1_000);
+        var tweeduizend = BigDecimal.valueOf(2_000);
+        var docenten = repository.findByWeddeBetween(duizend, tweeduizend);
+        assertThat(docenten).hasSize(countRowsInTableWhere(DOCENTEN, "wedde between 1000 and 2000")).allSatisfy(
+                docent -> assertThat(docent.getWedde()).isBetween(duizend, tweeduizend));
+    }
+
+    @Test
+    void findEmailAdressen() {
+        assertThat(repository.findEmailAdressen()).hasSize(countRowsInTable(DOCENTEN)).allSatisfy(emailAdres -> assertThat(emailAdres).contains("@"));
+    }
 }
