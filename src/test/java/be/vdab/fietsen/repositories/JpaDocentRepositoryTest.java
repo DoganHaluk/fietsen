@@ -94,4 +94,9 @@ class JpaDocentRepositoryTest extends AbstractTransactionalJUnit4SpringContextTe
     void findEmailAdressen() {
         assertThat(repository.findEmailAdressen()).hasSize(countRowsInTable(DOCENTEN)).allSatisfy(emailAdres -> assertThat(emailAdres).contains("@"));
     }
+
+    @Test
+    void findIdsEnEmailAdressen() {
+        assertThat(repository.findIdsEnEmailAdressen()).hasSize(countRowsInTable(DOCENTEN));
+    }
 }
