@@ -99,4 +99,9 @@ class JpaDocentRepositoryTest extends AbstractTransactionalJUnit4SpringContextTe
     void findIdsEnEmailAdressen() {
         assertThat(repository.findIdsEnEmailAdressen()).hasSize(countRowsInTable(DOCENTEN));
     }
+
+    @Test
+    void findGrootsteWedde() {
+        assertThat(repository.findGrootsteWedde()).isEqualByComparingTo(jdbcTemplate.queryForObject("select max(wedde) from docenten", BigDecimal.class));
+    }
 }

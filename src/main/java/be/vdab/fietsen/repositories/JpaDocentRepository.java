@@ -52,4 +52,9 @@ class JpaDocentRepository implements DocentRepository {
     public List<IdEnEmailAdres> findIdsEnEmailAdressen() {
         return manager.createQuery("select new be.vdab.fietsen.projections.IdEnEmailAdres(d.id, d.emailAdres) from Docent d", IdEnEmailAdres.class).getResultList();
     }
+
+    @Override
+    public BigDecimal findGrootsteWedde() {
+        return manager.createQuery("select max(d.wedde) from Docent d", BigDecimal.class).getSingleResult();
+    }
 }

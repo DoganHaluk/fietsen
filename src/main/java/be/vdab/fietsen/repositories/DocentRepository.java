@@ -21,4 +21,6 @@ public interface DocentRepository {
     List<String> findEmailAdressen();
 
     List<IdEnEmailAdres> findIdsEnEmailAdressen();
+
+    BigDecimal findGrootsteWedde();
 }
