@@ -1,6 +1,7 @@
 package be.vdab.fietsen.repositories;
 
 import be.vdab.fietsen.domain.Docent;
+import be.vdab.fietsen.projections.AantalDocentenPerWedde;
 import be.vdab.fietsen.projections.IdEnEmailAdres;
 import org.springframework.stereotype.Repository;
 
@@ -56,5 +57,10 @@ class JpaDocentRepository implements DocentRepository {
     @Override
     public BigDecimal findGrootsteWedde() {
         return manager.createQuery("select max(d.wedde) from Docent d", BigDecimal.class).getSingleResult();
+    }
+
+    @Override
+    public List<AantalDocentenPerWedde> findAantalDocentenPerWedde() {
+        return manager.createQuery("select new be.vdab.fietsen.projections.AantalDocentenPerWedde(" + "d.wedde,count(d)) from Docent d group by d.wedde", AantalDocentenPerWedde.class).getResultList();
     }
 }
