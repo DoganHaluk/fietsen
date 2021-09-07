@@ -61,6 +61,6 @@ class JpaDocentRepository implements DocentRepository {
 
     @Override
     public List<AantalDocentenPerWedde> findAantalDocentenPerWedde() {
-        return manager.createQuery("select new be.vdab.fietsen.projections.AantalDocentenPerWedde(" + "d.wedde,count(d)) from Docent d group by d.wedde", AantalDocentenPerWedde.class).getResultList();
+        return manager.createQuery("select new be.vdab.fietsen.projections.AantalDocentenPerWedde(d.wedde, count(d)) from Docent d group by d.wedde", AantalDocentenPerWedde.class).getResultList();
     }
 }
