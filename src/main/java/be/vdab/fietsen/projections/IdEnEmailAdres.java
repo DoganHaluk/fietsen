@@ -8,4 +8,12 @@ public class IdEnEmailAdres {
         this.id = id;
         this.emailAdres = emailAdres;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getEmailAdres() {
+        return emailAdres;
+    }
 }
