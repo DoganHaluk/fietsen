@@ -36,12 +36,12 @@ class JpaDocentRepository implements DocentRepository {
 
     @Override
     public List<Docent> findAll() {
-        return manager.createQuery("select d from Docent d order by d.wedde", Docent.class).getResultList();
+        return manager.createNamedQuery("Docent.findAll", Docent.class).getResultList();
     }
 
     @Override
     public List<Docent> findByWeddeBetween(BigDecimal van, BigDecimal tot) {
-        return manager.createQuery("select d from Docent d where d.wedde between :van and :tot", Docent.class).setParameter("van", van).setParameter("tot", tot).getResultList();
+        return manager.createNamedQuery("Docent.findByWeddeBetween", Docent.class).setParameter("van", van).setParameter("tot", tot).getResultList();
     }
 
     @Override

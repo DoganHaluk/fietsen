@@ -6,6 +6,7 @@ import java.math.RoundingMode;
 
 @Entity
 @Table(name = "docenten")
+@NamedQuery(name = "Docent.findAll", query = "select d from Docent d order by d.wedde")
 public class Docent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
