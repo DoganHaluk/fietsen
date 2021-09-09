@@ -63,4 +63,9 @@ class JpaDocentRepository implements DocentRepository {
     public List<AantalDocentenPerWedde> findAantalDocentenPerWedde() {
         return manager.createQuery("select new be.vdab.fietsen.projections.AantalDocentenPerWedde(d.wedde, count(d)) from Docent d group by d.wedde", AantalDocentenPerWedde.class).getResultList();
     }
+
+    @Override
+    public int algemeneOpslag(BigDecimal percentage) {
+        return manager.createNamedQuery("Docent.algemeneOpslag").setParameter("percentage", percentage).executeUpdate();
+    }
 }
