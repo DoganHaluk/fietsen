@@ -12,8 +12,7 @@ public abstract class Cursus {
     private long id;
     private String naam;
 
-    public Cursus(long id, String naam) {
-        this.id = id;
+    public Cursus(String naam) {
         this.naam = naam;
     }
 

@@ -10,8 +10,8 @@ public class GroepsCursus extends Cursus {
     private LocalDate van;
     private LocalDate tot;
 
-    public GroepsCursus(long id, String naam, LocalDate van, LocalDate tot) {
-        super(id, naam);
+    public GroepsCursus(String naam, LocalDate van, LocalDate tot) {
+        super(naam);
         this.van = van;
         this.tot = tot;
     }

@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 public class IndividueleCursus extends Cursus {
     private int duurtijd;
 
-    public IndividueleCursus(long id, String naam, int duurtijd) {
-        super(id, naam);
+    public IndividueleCursus(String naam, int duurtijd) {
+        super(naam);
         this.duurtijd = duurtijd;
     }
 
