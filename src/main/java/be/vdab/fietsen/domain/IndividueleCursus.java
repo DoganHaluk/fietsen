@@ -1,10 +1,10 @@
 package be.vdab.fietsen.domain;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-@DiscriminatorValue("I")
+@Table(name = "individuelecursussen")
 public class IndividueleCursus extends Cursus {
     private int duurtijd;
 
