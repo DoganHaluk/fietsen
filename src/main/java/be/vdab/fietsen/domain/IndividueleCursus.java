@@ -13,10 +13,6 @@ public class IndividueleCursus extends Cursus {
         this.duurtijd = duurtijd;
     }
 
-    public IndividueleCursus(int duurtijd) {
-        this.duurtijd = duurtijd;
-    }
-
     protected IndividueleCursus() {
     }
 

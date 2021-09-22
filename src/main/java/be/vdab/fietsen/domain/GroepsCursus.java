@@ -16,11 +16,6 @@ public class GroepsCursus extends Cursus {
         this.tot = tot;
     }
 
-    public GroepsCursus(LocalDate van, LocalDate tot) {
-        this.van = van;
-        this.tot = tot;
-    }
-
     protected GroepsCursus() {
     }
 
