@@ -18,7 +18,8 @@ public class Adres {
         this.postcode = postcode;
         this.gemeente = gemeente;
     }
-    protected Adres(){
+
+    protected Adres() {
     }
 
     public String getStraat() {

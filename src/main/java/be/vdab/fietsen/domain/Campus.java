@@ -16,7 +16,8 @@ public class Campus {
         this.naam = naam;
         this.adres = adres;
     }
-    protected Campus(){
+
+    protected Campus() {
     }
 
     public long getId() {
