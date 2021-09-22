@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Sql("/insertCampus.sql")
 public class JpaCampusRepositoryTest extends AbstractTransactionalJUnit4SpringContextTests {
     private static final String CAMPUSSEN = "campussen";
-    private JpaCampusRepository repository;
+    private final JpaCampusRepository repository;
 
     public JpaCampusRepositoryTest(JpaCampusRepository repository) {
         this.repository = repository;
