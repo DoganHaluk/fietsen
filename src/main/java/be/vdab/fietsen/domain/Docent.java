@@ -24,6 +24,9 @@ public class Docent {
     @CollectionTable(name = "docentenbijnamen", joinColumns = @JoinColumn(name = "docentId"))
     @Column(name = "bijnaam")
     private Set<String> bijnamen;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "campusId")
+    private Campus campus;
 
     public Docent(String voornaam, String familienaam, BigDecimal wedde, String emailAdres, Geslacht geslacht) {
         this.voornaam = voornaam;
@@ -82,5 +85,13 @@ public class Docent {
 
     public Set<String> getBijnamen() {
         return Collections.unmodifiableSet(bijnamen);
+    }
+
+    public Campus getCampus() {
+        return campus;
+    }
+
+    public void setCampus(Campus campus) {
+        this.campus = campus;
     }
 }
