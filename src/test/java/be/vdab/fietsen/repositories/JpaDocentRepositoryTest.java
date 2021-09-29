@@ -1,5 +1,7 @@
 package be.vdab.fietsen.repositories;
 
+import be.vdab.fietsen.domain.Adres;
+import be.vdab.fietsen.domain.Campus;
 import be.vdab.fietsen.domain.Docent;
 import be.vdab.fietsen.domain.Geslacht;
 import be.vdab.fietsen.projections.AantalDocentenPerWedde;
@@ -16,12 +18,13 @@ import java.math.BigDecimal;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest(showSql = false)
-@Sql("/insertDocent.sql")
+@Sql({"/insertCampus.sql", "/insertDocent.sql"})
 @Import(JpaDocentRepository.class)
 class JpaDocentRepositoryTest extends AbstractTransactionalJUnit4SpringContextTests {
     private final JpaDocentRepository repository;
     private static final String DOCENTEN = "docenten";
     private Docent docent;
+    private Campus campus;
     private final EntityManager manager;
 
     public JpaDocentRepositoryTest(JpaDocentRepository repository, EntityManager manager) {
@@ -59,14 +62,16 @@ class JpaDocentRepositoryTest extends AbstractTransactionalJUnit4SpringContextTe
 
     @BeforeEach
     void beforeEach() {
-        docent = new Docent("test", "test", BigDecimal.TEN, "test@test.be", Geslacht.MAN);
+        campus = new Campus("test", new Adres("test", "test", "test", "test"));
+        docent = new Docent("test", "test", BigDecimal.TEN, "test@test.be", Geslacht.MAN, campus);
     }
 
     @Test
     void create() {
+        manager.persist(campus);
         repository.create(docent);
         assertThat(docent.getId()).isPositive();
-        assertThat(countRowsInTableWhere(DOCENTEN, "id=" + docent.getId())).isOne();
+        assertThat(countRowsInTableWhere(DOCENTEN, "id=" + docent.getId() + " and campusId = " + campus.getId())).isOne();
     }
 
     @Test
@@ -131,9 +136,16 @@ class JpaDocentRepositoryTest extends AbstractTransactionalJUnit4SpringContextTe
 
     @Test
     void bijnaamToevoegen() {
+        manager.persist(campus);
         repository.create(docent);
         docent.addBijnaam("test");
         manager.flush();
         assertThat(countRowsInTableWhere(DOCENTEN_BIJNAMEN, "bijnaam = 'test' and docentId = " + docent.getId())).isOne();
+    }
+
+    @Test
+    void campusLazyLoaded() {
+        assertThat(repository.findById(idVanTestMan()))
+                .hasValueSatisfying(docent -> assertThat(docent.getCampus().getNaam()).isEqualTo("test"));
     }
 }
