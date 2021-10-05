@@ -31,7 +31,7 @@ class DefaultDocentServiceTest {
     void beforeEach() {
         service = new DefaultDocentService(repository);
         var campus = new Campus("test", new Adres("test", "test", "test", "test"));
-        docent = new Docent("test", "test", BigDecimal.valueOf(100), "test@test.be", Geslacht.MAN, campus);
+        docent = new Docent("test", "test", BigDecimal.valueOf(100), "test@test.be", Geslacht.MAN/*, campus*/);
     }
 
     @Test
