@@ -138,7 +138,7 @@ class JpaDocentRepositoryTest extends AbstractTransactionalJUnit4SpringContextTe
 
     @Test
     void bijnaamToevoegen() {
-        //manager.persist(campus);
+        manager.persist(campus);
         repository.create(docent);
         docent.addBijnaam("test");
         manager.flush();

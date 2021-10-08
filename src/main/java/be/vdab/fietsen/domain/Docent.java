@@ -34,7 +34,6 @@ public class Docent {
         this.wedde = wedde;
         this.emailAdres = emailAdres;
         this.geslacht = geslacht;
-        this.campus = campus;
         this.bijnamen = new LinkedHashSet<>();
         setCampus(campus);
     }
