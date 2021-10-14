@@ -27,7 +27,8 @@ public class Docent {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "campusId")
     private Campus campus;
-    @ManyToMany(mappedBy = "docenten")
+    @ManyToMany
+    @JoinTable(name = "docentenverantwoordelijkheden", joinColumns = @JoinColumn(name = "docentId"), inverseJoinColumns = @JoinColumn(name = "verantwoordelijkheidId"))
     private Set<Verantwoordelijkheid> verantwoordelijkheden = new LinkedHashSet<>();
 
     public Docent(String voornaam, String familienaam, BigDecimal wedde, String emailAdres, Geslacht geslacht, Campus campus) {
