@@ -94,6 +94,9 @@ class JpaDocentRepositoryTest extends AbstractTransactionalJUnit4SpringContextTe
         var docenten = repository.findByWeddeBetween(duizend, tweeduizend);
         assertThat(docenten).hasSize(countRowsInTableWhere(DOCENTEN, "wedde between 1000 and 2000")).allSatisfy(
                 docent -> assertThat(docent.getWedde()).isBetween(duizend, tweeduizend));
+        assertThat(docenten)
+                .extracting(Docent::getCampus)
+                .extracting(Campus::getNaam);
     }
 
     @Test
