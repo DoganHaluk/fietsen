@@ -30,6 +30,7 @@ public class Docent {
     private Campus campus;
     @ManyToMany(mappedBy = "docenten")
     private Set<Verantwoordelijkheid> verantwoordelijkheden = new LinkedHashSet<>();
+    public static final String MET_CAMPUS = "Docent.metCampus";
 
     public Docent(String voornaam, String familienaam, BigDecimal wedde, String emailAdres, Geslacht geslacht, Campus campus) {
         this.voornaam = voornaam;
