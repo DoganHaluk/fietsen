@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 @Table(name = "docenten")
 @NamedQuery(name = "Docent.findAll", query = "select d from Docent d order by d.wedde")
-@NamedEntityGraph(name = "Docent.metCampus", attributeNodes = @NamedAttributeNode("campus"))
+@NamedEntityGraph(name = Docent.MET_CAMPUS, attributeNodes = @NamedAttributeNode("campus"))
 public class Docent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
