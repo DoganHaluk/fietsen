@@ -28,4 +28,6 @@ public interface DocentRepository {
     List<AantalDocentenPerWedde> findAantalDocentenPerWedde();
 
     int algemeneOpslag(BigDecimal percentage);
+
+    Optional<Docent> findByIdWithLock(long id);
 }

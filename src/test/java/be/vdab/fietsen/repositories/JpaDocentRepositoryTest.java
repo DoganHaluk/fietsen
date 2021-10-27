@@ -170,4 +170,9 @@ class JpaDocentRepositoryTest extends AbstractTransactionalJUnit4SpringContextTe
         manager.flush();
         assertThat(countRowsInTableWhere(DOCENTEN_VERANTWOORDELIJKHEDEN, "docentId = " + docent.getId() + " and verantwoordelijkheidId = " + verantwoordelijkheid.getId())).isOne();
     }
+
+    @Test
+    void findByIdWithLock() {
+        assertThat(repository.findByIdWithLock(idVanTestMan())).hasValueSatisfying(docent -> assertThat(docent.getVoornaam()).isEqualTo("testM"));
+    }
 }

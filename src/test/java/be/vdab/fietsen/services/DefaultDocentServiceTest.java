@@ -36,10 +36,10 @@ class DefaultDocentServiceTest {
 
     @Test
     void opslag() {
-        when(repository.findById(1)).thenReturn(Optional.of(docent));
+        when(repository.findByIdWithLock(1)).thenReturn(Optional.of(docent));
         service.opslag(1, BigDecimal.TEN);
         assertThat(docent.getWedde()).isEqualByComparingTo("110");
-        verify(repository).findById(1);
+        verify(repository).findByIdWithLock(1);
     }
 
     @Test
