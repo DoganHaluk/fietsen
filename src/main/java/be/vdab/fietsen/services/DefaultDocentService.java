@@ -18,6 +18,6 @@ class DefaultDocentService implements DocentService {
 
     @Override
     public void opslag(long id, BigDecimal percentage) {
-        docentRepository.findByIdWithLock(id).orElseThrow(DocentNietGevondenException::new).opslag(percentage);
+        docentRepository.findById(id).orElseThrow(DocentNietGevondenException::new).opslag(percentage);
     }
 }

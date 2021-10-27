@@ -3,6 +3,7 @@ package be.vdab.fietsen.domain;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -31,6 +32,8 @@ public class Docent {
     @ManyToMany(mappedBy = "docenten")
     private Set<Verantwoordelijkheid> verantwoordelijkheden = new LinkedHashSet<>();
     public static final String MET_CAMPUS = "Docent.metCampus";
+    @Version
+    private Timestamp versie;
 
     public Docent(String voornaam, String familienaam, BigDecimal wedde, String emailAdres, Geslacht geslacht, Campus campus) {
         this.voornaam = voornaam;
