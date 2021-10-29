@@ -65,17 +65,4 @@ public class Campus {
         }
         return toegevoegd;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Campus)) return false;
-        Campus campus = (Campus) o;
-        return Objects.equals(naam.toUpperCase(), campus.naam.toUpperCase());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(naam.toUpperCase());
-    }
 }
